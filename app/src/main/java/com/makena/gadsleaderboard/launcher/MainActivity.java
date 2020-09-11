@@ -18,26 +18,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView imageView = findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        final Thread thread = new Thread(){
             @Override
-            public void onClick(View view) {
-               final Thread thread = new Thread(){
-                   @Override
-                   public void run() {
-                       super.run();
-                       try {
-                           sleep(3000);
-                           Intent i = new Intent(MainActivity.this, LeaderBoard.class);
-                           startActivity(i);
-                       } catch (InterruptedException e) {
-                           e.printStackTrace();
-                       }
-                   }
-               };
-               thread.start();
+            public void run() {
+                super.run();
+                try {
+                    sleep(3000);
+                    Intent i = new Intent(MainActivity.this, LeaderBoard.class);
+                    startActivity(i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        });
+        };
+        thread.start();
     }
 
 }
